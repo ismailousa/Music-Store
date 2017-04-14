@@ -9,15 +9,11 @@ namespace Music_Store.Controllers
 {
     public class StoreController : Controller
     {
+        MusicStoreEntities storeDB = new MusicStoreEntities();
         // GET: Store
         public ActionResult Index()
         {
-            var genres = new List<Genre>
-            {
-                new Genre { Name = "RnB"},
-                new Genre { Name = "Blues"},
-                new Genre { Name = "Hip Hop"}
-            };
+            var genres = storeDB.Genres.ToList();
             return View(genres);
         }
         //public ActionResult Browse()
@@ -27,12 +23,12 @@ namespace Music_Store.Controllers
         public ActionResult Browse(string genre)
         {
             //string message = HttpUtility.HtmlEncode("Store.Browse, Genre = " + genre);
-            var genreModel = new Genre { Name = genre };
+            var genreModel = storeDB.Genres.Include("Albums").Single(g => g.Name == genre);
             return View(genreModel);
         }
         public ActionResult Details(int id = 0)
         {
-            var album = new Album { Title = "Album " + id };
+            var album = storeDB.Albums.Find(id);
             return View(album);
         }
     }
