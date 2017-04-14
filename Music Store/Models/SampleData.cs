@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-using Music_Store.Models;
 
 namespace Music_Store.Models
 {
