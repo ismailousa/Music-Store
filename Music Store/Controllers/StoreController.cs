@@ -26,7 +26,7 @@ namespace Music_Store.Controllers
             var genreModel = storeDB.Genres.Include("Albums").Single(g => g.Name == genre);
             return View(genreModel);
         }
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(int id = 1)
         {
             var album = storeDB.Albums.Find(id);
             return View(album);
